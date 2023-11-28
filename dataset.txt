@@ -1,0 +1,8 @@
+'population': 'https://databank.worldbank.org/reports.aspx?source=2&series=SP.POP.TOTL&country='}
+electric = 'https://databank.worldbank.org/reports.aspx?source=2&series=EG.ELC.ACCS.ZS&country='
+water = 'https://databank.worldbank.org/reports.aspx?source=2&series=SH.H2O.SMDW.ZS&country='
+education = 'https://databank.worldbank.org/reports.aspx?source=2&Topic=4'
+pop ='https://databank.worldbank.org/reports.aspx?source=2&series=SP.POP.TOTL&country='
+net = 'https://databank.worldbank.org/reports.aspx?source=2&series=IT.NET.USER.ZS&country='
+
+We want to see how these informations can be represented upon population groups. Separate each group of population into 3 separate group of countries with different population, and then form a regression line over them to display a changing trend between these groups throughout the years. 
