@@ -118,6 +118,15 @@ def bar1(group1_countries, group2_countries, group3_countries):
     plt.title('Average Access to Electricity by Country Group')
     plt.show()
 
+#Script to draw the scatter charts and regression line. Thompson
+def scatter2():
+    dict2 = {}
+    y_label_dict = {'electricity': 'Coverage percentage (%)', 'water': 'Coverage percentage (%)', 'internet': 'Coverage percentage (%)', 'population': 'Population (billion)', 'gdp': 'Current GDP (trillion USD)', 'life_expectancy': 'Age(year)'}
+    pop_cat = pop_categorizer(read_and_process('world_bank_data_population.csv'))
+    print(pop_cat)
+    for i in ['electricity', 'water', 'internet', 'population', 'gdp', 'life_expectancy']:
+        dict2[i] = read_and_process('world_bank_data_' + i + '.csv')
+        scatter2_foreach(pop_cat,dict2[i], 'World Average ' + i.capitalize() + ' progress', y_label_dict[i])
 
 #Script to draw the scatter charts and regression line. Thompson
 def scatter2():
