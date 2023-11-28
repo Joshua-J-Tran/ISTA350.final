@@ -9,7 +9,7 @@ from scipy.stats import pearsonr
 import time
 import pandas as pd
 #allows scrolling to happen in selenium to gather all data. Huy Tran - Thompson
-'''
+
 def scrolling_within_element(driver, element_css_selector):
     scrollable_element = driver.find_element(By.CLASS_NAME, element_css_selector)
     last_height = driver.execute_script("return arguments[0].scrollHeight", scrollable_element)
@@ -21,7 +21,7 @@ def scrolling_within_element(driver, element_css_selector):
         if new_height == last_height:
             break
         last_height = new_height
-'''
+
 
 
 #Create a selenium driver for operation. Thompson. 
