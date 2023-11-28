@@ -118,6 +118,102 @@ def bar1(group1_countries, group2_countries, group3_countries):
     plt.title('Average Access to Electricity by Country Group')
     plt.show()
 
+def chart(group1_countries, group2_countries, group3_countries):
+    life_expectancy_df = read_and_process('world_bank_data_life_expectancy.csv')
+    health_expenditure_df = read_and_process('world_bank_data_health_expenditure.csv')
+    year_columns = life_expectancy_df.columns[1:]
+
+    group1_life = life_expectancy_df[life_expectancy_df['Country'].isin(group1_countries)]
+    group2_life = life_expectancy_df[life_expectancy_df['Country'].isin(group2_countries)]
+    group3_life = life_expectancy_df[life_expectancy_df['Country'].isin(group3_countries)]
+
+    group1_health = health_expenditure_df[health_expenditure_df['Country'].isin(group1_countries)]
+    group2_health = health_expenditure_df[health_expenditure_df['Country'].isin(group2_countries)]
+    group3_health = health_expenditure_df[health_expenditure_df['Country'].isin(group3_countries)]
+
+    avg_group1_life = group1_life[year_columns].mean()
+    avg_group2_life = group2_life[year_columns].mean()
+    avg_group3_life = group3_life[year_columns].mean()
+
+    avg_group1_health = group1_health[year_columns].mean()
+    avg_group2_health = group2_health[year_columns].mean()
+    avg_group3_health = group3_health[year_columns].mean()
+
+    fig, ax1 = plt.subplots(figsize=(15, 10))
+
+    ax1.plot(year_columns, avg_group1_life, color='blue', label='Group 1 Life Expectancy')
+    ax1.plot(year_columns, avg_group2_life, color='green', label='Group 2 Life Expectancy')
+    ax1.plot(year_columns, avg_group3_life, color='red', label='Group 3 Life Expectancy')
+    ax1.set_xlabel('Year')
+    ax1.set_ylabel('Average Life Expectancy')
+
+    ax2 = ax1.twinx()
+    ax2.plot(year_columns, avg_group1_health, 'b--', label='Group 1 Health Expenditure')
+    ax2.plot(year_columns, avg_group2_health, 'g--', label='Group 2 Health Expenditure')
+    ax2.plot(year_columns, avg_group3_health, 'r--', label='Group 3 Health Expenditure')
+    ax2.set_ylabel('Health Expenditure (% of GDP)')
+
+    lines, labels = ax1.get_legend_handles_labels()
+    lines2, labels2 = ax2.get_legend_handles_labels()
+    ax2.legend(lines + lines2, labels + labels2, loc='upper left')
+
+    plt.title('Average Life Expectancy and Health Expenditure Changes Over the Years by Group')
+    plt.show()
+
+def chart2(group1_countries, group2_countries, group3_countries):
+    life_expectancy_df = read_and_process('world_bank_data_life_expectancy.csv')
+    internet_access_df = read_and_process('world_bank_data_internet.csv')
+    year_columns = life_expectancy_df.columns[1:]
+
+    group1_life = life_expectancy_df[life_expectancy_df['Country'].isin(group1_countries)]
+    group2_life = life_expectancy_df[life_expectancy_df['Country'].isin(group2_countries)]
+    group3_life = life_expectancy_df[life_expectancy_df['Country'].isin(group3_countries)]
+
+    group1_internet = internet_access_df[internet_access_df['Country'].isin(group1_countries)]
+    group2_internet = internet_access_df[internet_access_df['Country'].isin(group2_countries)]
+    group3_internet = internet_access_df[internet_access_df['Country'].isin(group3_countries)]
+
+    avg_group1_life = group1_life[year_columns].mean()
+    avg_group2_life = group2_life[year_columns].mean()
+    avg_group3_life = group3_life[year_columns].mean()
+
+    avg_group1_internet = group1_internet[year_columns].mean()
+    avg_group2_internet = group2_internet[year_columns].mean()
+    avg_group3_internet = group3_internet[year_columns].mean()
+
+    fig, ax1 = plt.subplots(figsize=(15, 10))
+
+    ax1.plot(year_columns, avg_group1_life, color='blue', label='Group 1 Life Expectancy')
+    ax1.plot(year_columns, avg_group2_life, color='green', label='Group 2 Life Expectancy')
+    ax1.plot(year_columns, avg_group3_life, color='red', label='Group 3 Life Expectancy')
+    ax1.set_xlabel('Year')
+    ax1.set_ylabel('Average Life Expectancy')
+
+    ax2 = ax1.twinx()
+    ax2.plot(year_columns, avg_group1_internet, 'b--', label='Group 1 Internet Access')
+    ax2.plot(year_columns, avg_group2_internet, 'g--', label='Group 2 Internet Access')
+    ax2.plot(year_columns, avg_group3_internet, 'r--', label='Group 3 Internet Access')
+    ax2.set_ylabel('Internet Access (% of Population)')
+
+    lines, labels = ax1.get_legend_handles_labels()
+    lines2, labels2 = ax2.get_legend_handles_labels()
+    ax2.legend(lines + lines2, labels + labels2, loc='upper left')
+
+    plt.title('Average Life Expectancy and Internet Access Changes Over the Years by Group')
+    plt.show()
+
+def main2():
+    top,mid,bottom = sort ('world_bank_data_population.csv')
+    top2,mid2,bottom2 = sort ('world_bank_data_gdp.csv')
+    top3,mid3,bottom3 = sort ('world_bank_data_health_expenditure.csv')
+    group1, group2, group3 = sort('world_bank_data_internet.csv')
+    group4, group5, group6 = sort('world_bank_data_life_expectancy.csv')
+    print (top2[:3])
+    print (top3[:3])
+    scatter1(top2,mid2,bottom2)
+    chart(top2,mid2,bottom2)
+    chart2(top2,mid2,bottom2)
+    scatter2()
 
 #Script to draw the scatter charts and regression line. Thompson
 def scatter2():
